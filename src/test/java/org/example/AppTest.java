@@ -164,6 +164,5 @@ class AppTest {
                 Påbörja laddning klockan 19
                 Medelpris 4h: 2,5 öre/kWh
                 """;
-        assertThat(bos.toString()).contains(response);
-    }
+        assertThat(bos.toString()).contains(response);}
 }
