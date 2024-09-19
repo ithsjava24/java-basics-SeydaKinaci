@@ -71,10 +71,10 @@ public class App {
         System.out.println("Priserna sorterade från högsta till lägsta: ");
         for (int i = TIMMAR_I_DYGNET - 1; i >= 0; i--) {
             int timme = hittaTimmeForPrisUnik(sorteradePriser[i], timmeAnvand);
-            int nästaTimme = (timme + 1) % TIMMAR_I_DYGNET;
+            int nastaTimme = (timme + 1) % TIMMAR_I_DYGNET;
 
             // Format the hour range correctly, e.g., "23-00" should be "23-24"
-            String endHour = (nästaTimme == 0) ? "24" : String.format("%02d", nästaTimme);
+            String endHour = (nastaTimme == 0) ? "24" : String.format("%02d", nastaTimme);
 
             System.out.printf(Locale.forLanguageTag("sv-SE"), "%02d-%s %d öre\n", timme, endHour, sorteradePriser[i]);
         }
