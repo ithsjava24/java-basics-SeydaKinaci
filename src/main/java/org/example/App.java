@@ -21,45 +21,46 @@ public class App {
             val = scanner.nextLine();
 
             switch (val) {
-                case "1" :
+                case "1":
                     angeElpriser(scanner);
                     break;
-                case "2" :
+                case "2":
                     visaMinMaxMedel();
                     break;
-                case "3" :
+                case "3":
                     sorteraOchVisaPriser();
                     break;
-                case "4" :
+                case "4":
                     hittaBastaLaddningsTid();
                     break;
-                case "e" :
-                case "E" :
-                 {System.out.println("Program avslutade."); }
-                    fungerarKoden = false;
-                    break;
-                default :
+                case "e":
+                case "E": {
+                    System.out.println("Program avslutade.");
+                }
+                fungerarKoden = false;
+                break;
+                default:
                     System.out.println("Ogiltigt val. Försök igen!");
             }
         }
     }
 
-    private static void hittaBastaLaddningsTid(){
+    private static void hittaBastaLaddningsTid() {
         int bastaStartTimme = 0;
         int lagstaTotal = Integer.MAX_VALUE;
 
-        for (int i = 0; i<= TIMMAR_I_DYGNET-4; i++){
-            int totalPris = elPriser[i]+ elPriser[i+1] + elPriser[i+2] + elPriser[i+3];
-            if (totalPris < lagstaTotal){
+        for (int i = 0; i <= TIMMAR_I_DYGNET - 4; i++) {
+            int totalPris = elPriser[i] + elPriser[i + 1] + elPriser[i + 2] + elPriser[i + 3];
+            if (totalPris < lagstaTotal) {
                 lagstaTotal = totalPris;
                 bastaStartTimme = i;
             }
         }
         double medelPris = lagstaTotal / 4.0;
         System.out.printf(Locale.forLanguageTag("sv-SE"), """
-        Påbörja laddning klockan %02d
-        Medelpris 4h: %.1f öre/kWh
-        """, bastaStartTimme, medelPris);
+                Påbörja laddning klockan %02d
+                Medelpris 4h: %.1f öre/kWh
+                """, bastaStartTimme, medelPris);
     }
 
     //Sortera
@@ -80,17 +81,18 @@ public class App {
         }
     }
 
-    private static int hittaTimmeForPrisUnik(int pris, boolean[] timmeAnvand){
-        for(int i = 0; i<elPriser.length; i++){
-            if(elPriser[i] == pris && !timmeAnvand[i]){
+    private static int hittaTimmeForPrisUnik(int pris, boolean[] timmeAnvand) {
+        for (int i = 0; i < elPriser.length; i++) {
+            if (elPriser[i] == pris && !timmeAnvand[i]) {
                 timmeAnvand[i] = true;
                 return i;
             }
         }
-    return -1; }
+        return -1;
+    }
 
 
-    private static void visaMinMaxMedel(){
+    private static void visaMinMaxMedel() {
         int minPris = elPriser[0];
         int maxPris = elPriser[0];
         int total = 0;
@@ -109,9 +111,9 @@ public class App {
             total += elPriser[i];
         }
         double medelPrice = total / (double) TIMMAR_I_DYGNET;
-        System.out.printf(Locale.forLanguageTag("sv-SE"),"Lägsta pris: %02d-%02d, %d öre/kWh\n", minTimme, (minTimme + 1) % TIMMAR_I_DYGNET, minPris);
-        System.out.printf(Locale.forLanguageTag("sv-SE"),"Högsta pris: %02d-%02d, %d öre/kWh\n", maxTimme, (maxTimme + 1) % TIMMAR_I_DYGNET, maxPris);
-        System.out.printf(Locale.forLanguageTag("sv-SE"),"Medelpris: %.2f öre/kWh\n", medelPrice);
+        System.out.printf(Locale.forLanguageTag("sv-SE"), "Lägsta pris: %02d-%02d, %d öre/kWh\n", minTimme, (minTimme + 1) % TIMMAR_I_DYGNET, minPris);
+        System.out.printf(Locale.forLanguageTag("sv-SE"), "Högsta pris: %02d-%02d, %d öre/kWh\n", maxTimme, (maxTimme + 1) % TIMMAR_I_DYGNET, maxPris);
+        System.out.printf(Locale.forLanguageTag("sv-SE"), "Medelpris: %.2f öre/kWh\n", medelPrice);
     }
 
     private static void angeElpriser(Scanner scanner) {
@@ -123,7 +125,8 @@ public class App {
         }
         scanner.nextLine();
     }
-    private static void printMeny () {
+
+    private static void printMeny() {
         System.out.println("""
                 Elpriser
                 ========
@@ -135,8 +138,4 @@ public class App {
                 Välj ett av alternativ:
                 """);
     }
-
-
 }
-
-
